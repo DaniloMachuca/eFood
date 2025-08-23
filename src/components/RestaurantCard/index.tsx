@@ -26,8 +26,8 @@ const RestaurantCard = ({
     <S.CardContainer>
       <img src={image} alt={title} />
       <S.Infos>
-        <Tag>{infos}</Tag>
         {isFirst && <Tag>Destaque da semana</Tag>}
+        <Tag>{infos}</Tag>
       </S.Infos>
       <S.TextContainer>
         <S.CardHeader>
