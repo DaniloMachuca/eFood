@@ -1,26 +1,29 @@
 import * as S from './styles'
 import RestaurantCard from '../RestaurantCard'
-import Restaurant from '../../models/Restaurant'
+import type { Restaurants } from '../../pages/Home'
 
 type Props = {
-  restaurants: Restaurant[]
+  restaurants: Restaurants[]
 }
+
+const orderByRank = (a: Restaurants, b: Restaurants) =>
+  b.avaliacao - a.avaliacao
 
 const RestaurantList = ({ restaurants }: Props) => {
   return (
     <S.Container>
       <S.List>
-        {restaurants.map((r) => {
+        {restaurants.sort(orderByRank).map((r, index) => {
           return (
             <RestaurantCard
-              description={r.description}
+              description={r.descricao}
               id={r.id}
-              image={r.image}
-              infos={r.infos}
+              image={r.capa}
+              infos={r.tipo}
               key={r.id}
-              rank={r.rank}
-              title={r.title}
-              link={r.link}
+              rank={r.avaliacao}
+              title={r.titulo}
+              isFirst={index === 0}
             />
           )
         })}

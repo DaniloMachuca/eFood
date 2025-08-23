@@ -7,10 +7,10 @@ type Props = {
   title: string
   description: string
   image: string
-  infos: string[]
+  infos: string
   rank: number
   id: number
-  link: string
+  isFirst?: boolean
 }
 
 const RestaurantCard = ({
@@ -20,28 +20,25 @@ const RestaurantCard = ({
   infos,
   id,
   rank,
-  link
+  isFirst
 }: Props) => {
   return (
     <S.CardContainer>
       <img src={image} alt={title} />
       <S.Infos>
-        {infos.map((info) => (
-          <Tag key={info}>{info}</Tag>
-        ))}
+        <Tag>{infos}</Tag>
+        {isFirst && <Tag>Destaque da semana</Tag>}
       </S.Infos>
       <S.TextContainer>
         <S.CardHeader>
           <h3>{title}</h3>
-          <S.Nota>
+          <S.Rank>
             <p>{rank}</p>
             <img src={star} alt="star" />
-          </S.Nota>
+          </S.Rank>
         </S.CardHeader>
         <S.Description>{description}</S.Description>
-        <Tag size="big">
-          <Link to={link}>Saiba mais</Link>
-        </Tag>
+        <S.LearnMore to={`/restaurant/${id}`}>Saiba mais</S.LearnMore>
       </S.TextContainer>
     </S.CardContainer>
   )

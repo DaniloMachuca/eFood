@@ -1,23 +1,35 @@
-import Header from '../../components/Header'
-import RestaurantPage from '../../models/RestaurantPage'
+import RestaurantHeader from '../../components/RestaurantHeader'
 import Banner from '../../components/Banner'
-import ProductList from '../../components/ProductList'
+import RestaurantMenu from '../../components/RestaurantMenu'
+import { useParams } from 'react-router-dom'
+import type { Restaurants } from '../Home'
+import { useEffect, useState } from 'react'
 
-type Props = {
-  restaurant: RestaurantPage
-}
+const Perfil = () => {
+  const { id } = useParams()
 
-const Perfil = ({ restaurant }: Props) => {
+  const [Restaurant, setRestaurant] = useState<Restaurants>()
+
+  useEffect(() => {
+    fetch(`https://ebac-fake-api.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((data) => setRestaurant(data))
+  }, [id])
+
+  if (!Restaurant) {
+    return <h1></h1>
+  }
+
   return (
     <>
-      <Header />
+      <RestaurantHeader />
       <Banner
-        infos={restaurant.infos}
-        name={restaurant.name}
-        image={restaurant.background}
+        infos={Restaurant.tipo}
+        name={Restaurant.titulo}
+        image={Restaurant.capa}
       />
       <div className="container">
-        <ProductList produtos={restaurant.itens} />
+        <RestaurantMenu produtos={Restaurant.cardapio} />
       </div>
     </>
   )
