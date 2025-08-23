@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../styles'
 
 export const Background = styled.div`
-  background-size: fill;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   min-height: 280px;
