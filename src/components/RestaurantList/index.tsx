@@ -6,14 +6,16 @@ type Props = {
   restaurants: Restaurants[]
 }
 
-const orderByRank = (a: Restaurants, b: Restaurants) =>
-  b.avaliacao - a.avaliacao
-
 const RestaurantList = ({ restaurants }: Props) => {
+  const orderByRank = (a: Restaurants, b: Restaurants) =>
+    b.avaliacao - a.avaliacao
+
+  const restaurantsCopy = [...restaurants]
+
   return (
     <S.Container>
       <S.List>
-        {restaurants.sort(orderByRank).map((r, index) => {
+        {restaurantsCopy.sort(orderByRank).map((r, index) => {
           return (
             <RestaurantCard
               description={r.descricao}

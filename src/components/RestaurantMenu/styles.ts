@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Container = styled.section`
   padding-top: 80px;
@@ -7,8 +7,16 @@ export const Container = styled.section`
 `
 export const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 32px;
+
+  @media (min-width: ${breakpoints.desktop}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 export const Modal = styled.div`
   position: fixed;
@@ -51,6 +59,11 @@ export const ModalContent = styled.div`
     top: 8px;
     right: 8px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `
 
@@ -74,6 +87,16 @@ export const ModalContainer = styled.div`
     font-size: 14px;
     line-height: 22px;
     margin-bottom: 16px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+    > img {
+      max-width: 100%;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
   }
 `
 

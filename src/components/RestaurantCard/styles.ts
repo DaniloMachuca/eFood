@@ -4,25 +4,31 @@ import { TagContainer } from '../Tag/styles'
 import { Link } from 'react-router-dom'
 
 export const CardContainer = styled.li`
-  display: flex-box;
+  display: flex;
   flex-direction: column;
   border: 1px solid ${colors.salmon};
-  > img {
+  > div > img {
     width: 100%;
     max-height: 200px;
     object-fit: cover;
   }
   position: relative;
   background-color: ${colors.white};
+  justify-content: space-between;
 `
 
 export const TextContainer = styled.div`
   padding: 8px;
 `
 export const Rank = styled.div`
+  align-items: center;
   display: flex;
   gap: 4px;
   font-weight: bold;
+  img {
+    width: 21px;
+    height: 21px;
+  }
 `
 
 export const CardHeader = styled.div`
@@ -31,6 +37,7 @@ export const CardHeader = styled.div`
   margin-bottom: 16px;
   font-size: 18px;
   text-align: center;
+  padding: 8px;
 `
 export const Description = styled.p`
   font-size: 14px;

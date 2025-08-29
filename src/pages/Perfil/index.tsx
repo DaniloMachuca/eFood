@@ -1,20 +1,15 @@
 import RestaurantHeader from '../../components/RestaurantHeader'
 import Banner from '../../components/Banner'
 import RestaurantMenu from '../../components/RestaurantMenu'
+import Cart from '../../components/Cart'
+
 import { useParams } from 'react-router-dom'
-import type { Restaurants } from '../Home'
-import { useEffect, useState } from 'react'
+import { useGetRestaurantPageQuery } from '../../services/api'
 
 const Perfil = () => {
   const { id } = useParams()
 
-  const [Restaurant, setRestaurant] = useState<Restaurants>()
-
-  useEffect(() => {
-    fetch(`https://ebac-fake-api.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((data) => setRestaurant(data))
-  }, [id])
+  const { data: Restaurant } = useGetRestaurantPageQuery(Number(id))
 
   if (!Restaurant) {
     return <h1></h1>
@@ -22,6 +17,7 @@ const Perfil = () => {
 
   return (
     <>
+      <Cart />
       <RestaurantHeader />
       <Banner
         infos={Restaurant.tipo}
