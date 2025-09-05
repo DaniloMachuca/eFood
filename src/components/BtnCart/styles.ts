@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../styles'
 
 export const BtnCart = styled.button`
-  padding: 8px 0;
+  padding: 1px 0;
   width: 100%;
   background-color: ${colors.beige};
   color: ${colors.salmon};
@@ -14,7 +14,7 @@ export const BtnCart = styled.button`
   font-weight: bold;
   font-size: 14px;
   transition: all 0.2s ease-in-out;
-  border: 3px solid ${colors.salmon};
+  border: 3px solid ${colors.beige};
 
   &:hover {
     border: 3px solid ${colors.beige};

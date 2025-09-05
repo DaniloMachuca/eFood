@@ -63,6 +63,7 @@ export const LearnMore = styled(Link)`
   background-color: ${colors.salmon};
   color: ${colors.beige};
   font-size: 14px;
+  border: 3px solid ${colors.salmon};
   text-decoration: none;
 
   &:hover {

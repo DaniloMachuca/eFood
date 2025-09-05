@@ -1,12 +1,12 @@
-import * as S from './styles'
-import closeImg from '../../assets/images/close.png'
-import BtnCart from '../BtnCart'
-
-//redux
-import { RestaurantIten } from '../../pages/Home'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 import { add, open } from '../../store/reducers/cart'
+import { priceFormater } from '../../utils'
+
+import closeImg from '../../assets/images/close.png'
+import BtnCart from '../BtnCart'
+import * as S from './styles'
 
 type Props = {
   produtos: RestaurantIten[]
@@ -14,13 +14,6 @@ type Props = {
 
 interface ModalState extends RestaurantIten {
   isVisible: boolean
-}
-
-export const priceFormater = (preco = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
 }
 
 const RestaurantMenu = ({ produtos }: Props) => {
@@ -76,6 +69,7 @@ const RestaurantMenu = ({ produtos }: Props) => {
                 </div>
                 <S.Description>{produto.descricao}</S.Description>
                 <BtnCart
+                  id="testIdBtnAddCart"
                   onClick={() => {
                     setModal({
                       foto: produto.foto,
@@ -108,7 +102,7 @@ const RestaurantMenu = ({ produtos }: Props) => {
                 {Modal.descricao} <br />
                 <br /> Serve: {Modal.porcao}
               </p>
-              <BtnCart onClick={addToCart}>
+              <BtnCart id="testIdModalBtn" onClick={addToCart}>
                 Adicionar ao carrinho - {priceFormater(Modal.preco)}
               </BtnCart>
             </div>

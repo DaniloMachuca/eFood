@@ -1,6 +1,10 @@
+import { BtnCart } from './../BtnCart/styles'
 import styled from 'styled-components'
-import { BtnCart } from '../BtnCart/styles'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
+
+type InputGroupProps = {
+  $maxWidth?: string
+}
 
 export const Overlay = styled.div`
   position: fixed;
@@ -20,13 +24,23 @@ export const Overlay = styled.div`
 export const Sidebar = styled.aside`
   background-color: ${colors.salmon};
   z-index: 1;
-  padding: 36px 16px 0px 16px;
+  padding: 36px 8px 0px 8px;
   max-width: 360px;
   width: 100%;
 
   ${BtnCart} {
     max-width: 100%;
     width: 100%;
+  }
+
+  form {
+    h3 {
+      color: ${colors.beige};
+      font-weight: bold;
+    }
+    ${BtnCart} {
+      margin-bottom: 8px;
+    }
   }
 `
 
@@ -123,5 +137,68 @@ export const TextContainer = styled.div`
     p {
       margin-bottom: 16px;
     }
+  }
+`
+export const Imputs = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding: 16px 0px 24px 0px;
+`
+
+export const ImputGroup = styled.div<InputGroupProps>`
+  flex: auto;
+  max-width: ${(props) => props.$maxWidth || 'auto'};
+
+  label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    display: block;
+    color: ${colors.beige};
+  }
+
+  input,
+  select {
+    background-color: ${colors.beige};
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid ${colors.beige};
+    width: 100%;
+    color: ${colors.gray};
+    font-size: 14px;
+    font-weight: bold;
+
+    &.error {
+      border: 1px solid red;
+    }
+  }
+`
+
+export const Row = styled.div`
+  display: flex;
+  column-gap: 24px;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: block;
+  }
+`
+
+export const SuccessMsg = styled.div`
+  h3 {
+    font-size: 16px;
+    color: ${colors.beige};
+    margin-bottom: 16px;
+  }
+  p {
+    font-size: 14px;
+    line-height: 22px;
+    color: ${colors.beige};
+  }
+
+  ${BtnCart} {
+    margin-top: 24px;
   }
 `

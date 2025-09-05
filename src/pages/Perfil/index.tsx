@@ -1,32 +1,60 @@
+import { useParams } from 'react-router-dom'
+
+import { useGetRestaurantPageQuery } from '../../services/api'
+
 import RestaurantHeader from '../../components/RestaurantHeader'
 import Banner from '../../components/Banner'
 import RestaurantMenu from '../../components/RestaurantMenu'
 import Cart from '../../components/Cart'
-
-import { useParams } from 'react-router-dom'
-import { useGetRestaurantPageQuery } from '../../services/api'
+import Loader from '../../components/Loader'
 
 const Perfil = () => {
   const { id } = useParams()
 
-  const { data: Restaurant } = useGetRestaurantPageQuery(Number(id))
+  const {
+    data: Restaurant,
+    isLoading,
+    isSuccess
+  } = useGetRestaurantPageQuery(Number(id))
 
-  if (!Restaurant) {
-    return <h1></h1>
+  const RestaurantData = () => {
+    const emptyArray: Restaurants = {
+      id: 0,
+      avaliacao: 0,
+      capa: '',
+      cardapio: [
+        { descricao: '', foto: '', id: 0, nome: '', porcao: '', preco: 0 }
+      ],
+      descricao: '',
+      destacado: '',
+      tipo: '',
+      titulo: ''
+    }
+    if (isSuccess) {
+      return Restaurant
+    } else {
+      return emptyArray
+    }
   }
 
   return (
     <>
       <Cart />
       <RestaurantHeader />
-      <Banner
-        infos={Restaurant.tipo}
-        name={Restaurant.titulo}
-        image={Restaurant.capa}
-      />
-      <div className="container">
-        <RestaurantMenu produtos={Restaurant.cardapio} />
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Banner
+            infos={RestaurantData().tipo}
+            name={RestaurantData().titulo}
+            image={RestaurantData().capa}
+          />
+          <div className="container">
+            <RestaurantMenu produtos={RestaurantData().cardapio} />
+          </div>
+        </>
+      )}
     </>
   )
 }

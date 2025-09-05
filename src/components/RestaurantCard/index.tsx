@@ -1,7 +1,7 @@
-import Tag from '../Tag'
-import star from '../../assets/images/estrela.svg'
-import * as S from './styles'
 import useMediaQuery from '../../utils/MediaQuery'
+import star from '../../assets/images/estrela.svg'
+import Tag from '../Tag'
+import * as S from './styles'
 
 type Props = {
   title: string

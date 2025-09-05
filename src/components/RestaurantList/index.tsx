@@ -1,9 +1,9 @@
-import * as S from './styles'
 import RestaurantCard from '../RestaurantCard'
-import type { Restaurants } from '../../pages/Home'
+import * as S from './styles'
 
 type Props = {
   restaurants: Restaurants[]
+  isLoading: boolean
 }
 
 const RestaurantList = ({ restaurants }: Props) => {

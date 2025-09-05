@@ -1,10 +1,12 @@
-import * as S from './styles'
-import Logo from '../../assets/images/logo.png'
-import Fundo from '../../assets/images/fundo.png'
-import { open } from '../../store/reducers/cart'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
 import useMediaQuery from '../../utils/MediaQuery'
+
+import Logo from '../../assets/images/logo.png'
+import Fundo from '../../assets/images/fundo.png'
+import * as S from './styles'
 
 const RestaurantHeader = () => {
   const dispatch = useDispatch()
@@ -21,7 +23,9 @@ const RestaurantHeader = () => {
       <div className="container">
         <S.HeaderList>
           <S.Links to={'/'}>Restaurantes</S.Links>
+
           <img src={Logo} alt="eFood" />
+
           <S.LinkCart
             onClick={openCart}
             style={isMobile ? {} : { textAlign: 'right' }}

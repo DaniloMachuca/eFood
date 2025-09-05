@@ -1,0 +1,25 @@
+/// <reference types="cypress" />
+
+describe('teste de formulário', () => {
+  it('Deve ir para a msg de agradecimento', () => {
+    cy.visit('http://localhost:5173/restaurant/2')
+    cy.get(':nth-child(1) > #testIdBtnAddCart').click()
+    cy.get('#testIdModalBtn').click()
+    cy.get('#testIdBtnCheckout').click()
+    cy.get('input[name="deliveryName"]').type('Test Name')
+    cy.get('input[name="address"]').type('Test Adress')
+    cy.get('input[name="city"]').type('Test City')
+    cy.get('input[name="zipCode"]').type('11111-111')
+    cy.get('input[name="number"]').type('123')
+    cy.get('input[name="complement"]').type('Test Complement')
+    cy.get('#testIdBtnPayment').click()
+    cy.get('#testIdBtnPayment').click()
+    cy.get('input[name="cardOwner"]').type('Test Name')
+    cy.get('input[name="cardNumber"]').type('1111 1111 1111 1111')
+    cy.get('input[name="cardCode"]').type('111')
+    cy.get('input[name="expiresMonth"]').type('11')
+    cy.get('input[name="expiresYear"]').type('2020')
+    cy.get('#testIdBtnSubmit').click()
+    cy.get('html').should('contain', 'Gostaríamos')
+  })
+})
